@@ -1,0 +1,321 @@
+-- Antelligence V2 Ant Colony Game made by mr rake  
+
+
+-- Here Your Free Script Loader Make Sure To Like And Subscribe On My Channel
+-- Give Me Credits If You're Going To Use It
+
+-- ScreenGui object
+local gui = Instance.new("ScreenGui")
+gui.Name = "CustomLoader"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 180)
+frame.Position = UDim2.new(0.5, -150, 0.9, -280)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.Parent = gui
+
+-- UICorner of the frame
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 10)
+corner.Parent = frame
+
+-- Title 
+local Title = Instance.new("TextLabel")
+Title.Size = UDim2.new(0.99, 0, 0, 60)
+Title.Position = UDim2.new(0.03, 0, 0.10, 0)
+Title.BackgroundColor3 = Color3.new(0, 0, 0)
+Title.BackgroundTransparency = 1
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.TextSize = 25
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = "You Script Name" -- Change to your script name
+Title.Parent = frame
+
+-- Loading bar frame
+local loadingBarFrame = Instance.new("Frame")
+loadingBarFrame.Size = UDim2.new(0, 0, 0.2, 0)
+loadingBarFrame.Position = UDim2.new(0.02, 0, 0.7, 0)
+loadingBarFrame.BackgroundColor3 = Color3.new(20, 0, 21)
+loadingBarFrame.Parent = frame
+
+-- UICorner of the loading bar frame
+local corner_2 = Instance.new("UICorner")
+corner_2.CornerRadius = UDim.new(0, 6)
+corner_2.Parent = loadingBarFrame
+
+-- Loading text
+local loadingText = Instance.new("TextLabel")
+loadingText.Size = UDim2.new(0.95, 0, 0, 30)
+loadingText.Position = UDim2.new(0.03, 0, 0.7, 0)
+loadingText.BackgroundColor3 = Color3.new(0, 0, 0)
+loadingText.BackgroundTransparency = 1
+loadingText.TextColor3 = Color3.new(1, 1, 1)
+loadingText.TextSize = 18
+loadingText.Font = Enum.Font.SourceSansBold
+loadingText.Text = "Loading..."
+loadingText.Parent = frame
+
+-- Function to animate the loading bar
+function animateLoadingBar()
+    local progress = 0
+
+    while progress < 100 do
+        progress = progress + 1
+        updateProgress(progress)
+        wait(0.05) -- Adjust the animation speed as needed
+    end
+
+    loadingText.Text = "Successfully Loaded"
+  wait(0.5)
+  gui:Destroy()
+
+-- Put your script here
+end
+
+-- Function to update the loading progress
+function updateProgress(progress)
+    loadingBarFrame.Size = UDim2.new(progress / 105, 0, 0.2, 0)
+    loadingText.Text = "Loading: " .. progress .. "%"
+end
+
+-- Start the loading animation
+spawn(animateLoadingBar)
+
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/thanhdat4461/OrionMoblie/main/source')))()	
+local Window = OrionLib:MakeWindow({Name = "Antelligence V2 Ant Colony Game made by mr rake", HidePremium = false, SaveConfig = true, ConfigFolder = "HEHE"})
+
+local A1Tab = Window:MakeTab({
+	Name = "KILL aura",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+local A2Tab = Window:MakeTab({
+	Name = "SPEED",
+	Icon = "rbxassAetid://4483345998",
+	PremiumOnly = false
+})
+local A3Tab = Window:MakeTab({
+	Name = "ESP",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local A1Section = A1Tab:AddSection({
+	Name = "Kill aura"
+})
+local A2Section = A2Tab:AddSection({
+	Name = "SPEED"
+})
+local A3Section = A3Tab:AddSection({
+	Name = "ESP"
+})
+
+
+A1Tab:AddButton({
+	Name = "kill aura!",
+	Callback = function()
+      		--_G.killaura = true
+loadstring(game:HttpGet("https://pastebin.com/raw/FhLDKube"))() --killaura
+  	end    
+})
+
+A3Tab:AddButton({
+	Name = "esp all ants",
+	Callback = function()
+      		--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+--//Toggle\\--
+getgenv().Toggle = true -- This toggles the esp, turning it to false will turn it off
+getgenv().TC = false -- This toggles team check, turning it on will turn on team check
+local PlayerName = "Name" -- You can decide if you want the Player's name to be a display name which is "DisplayName", or username which is "Name"
+
+--//Variables\\--
+local P = game:GetService("Players")
+local LP = P.LocalPlayer
+
+--//Debounce\\--
+local DB = false
+
+--//Notification\\--
+game.StarterGui:SetCore("SendNotification", {
+	Title = "Notification",
+	Text = "esp Antelligence V2 Ant Colony Game made by mr rake" ,
+	Button1 = "Bro shut up",
+	Duration = math.huge
+})
+
+--//Loop\\--
+while task.wait() do
+	if not getgenv().Toggle then
+		break
+	end
+	if DB then 
+		return 
+	end
+	DB = true
+
+	pcall(function()
+		for i,v in pairs(P:GetChildren()) do
+			if v:IsA("Player") then
+				if v ~= LP then
+					if v.Character then
+
+						local pos = math.floor(((LP.Character:FindFirstChild("HumanoidRootPart")).Position - (v.Character:FindFirstChild("HumanoidRootPart")).Position).magnitude)
+						-- Credits to Infinite Yield for this part (pos) ^^^^^^
+
+						if v.Character:FindFirstChild("Totally NOT Esp") == nil and v.Character:FindFirstChild("Icon") == nil and getgenv().TC == false then
+							--//ESP-Highlight\\--
+							local ESP = Instance.new("Highlight", v.Character)
+
+							ESP.Name = "Totally NOT Esp"
+							ESP.Adornee = v.Character
+							ESP.Archivable = true
+							ESP.Enabled = true
+							ESP.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+							ESP.FillColor = v.TeamColor.Color
+							ESP.FillTransparency = 0.5
+							ESP.OutlineColor = Color3.fromRGB(255, 0, 0)
+							ESP.OutlineTransparency = 0
+
+							--//ESP-Text\\--
+							local Icon = Instance.new("BillboardGui", v.Character)
+							local ESPText = Instance.new("TextLabel")
+
+							Icon.Name = "Icon"
+							Icon.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+							Icon.Active = true
+							Icon.AlwaysOnTop = true
+							Icon.ExtentsOffset = Vector3.new(0, 1, 0)
+							Icon.LightInfluence = 1.000
+							Icon.Size = UDim2.new(0, 800, 0, 50)
+
+							ESPText.Name = "ESP Text"
+							ESPText.Parent = Icon
+							ESPText.BackgroundColor3 = v.TeamColor.Color
+							ESPText.BackgroundTransparency = 1.000
+							ESPText.Size = UDim2.new(0, 800, 0, 50)
+							ESPText.Font = Enum.Font.SciFi
+							ESPText.Text = v[PlayerName].." | Distance Ant!: "..pos
+							ESPText.TextColor3 = v.TeamColor.Color
+							ESPText.TextSize = 10.800
+							ESPText.TextWrapped = true
+						else
+							if v.TeamColor ~= LP.TeamColor and v.Character:FindFirstChild("Totally NOT Esp") == nil and v.Character:FindFirstChild("Icon") == nil and getgenv().TC == true then
+								--//ESP-Highlight\\--
+								local ESP = Instance.new("BloodTheme", v.Character)
+
+								ESP.Name = "Totally NOT Esp"
+								ESP.Adornee = v.Character
+								ESP.Archivable = true
+								ESP.Enabled = true
+								ESP.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+								ESP.FillColor = v.TeamColor.Color
+								ESP.FillTransparency = 0.5
+								ESP.OutlineColor = Color3.fromRGB(255, 0, 0)
+								ESP.OutlineTransparency = 0
+
+								--//ESP-Text\\--
+								local Icon = Instance.new("BillboardGui", v.Character)
+								local ESPText = Instance.new("TextLabel")
+
+								Icon.Name = "Icon"
+								Icon.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+								Icon.Active = true
+								Icon.AlwaysOnTop = true
+								Icon.ExtentsOffset = Vector3.new(0, 1, 0)
+								Icon.LightInfluence = 1.000
+								Icon.Size = UDim2.new(0, 800, 0, 50)
+
+								ESPText.Name = "ESP Text"
+								ESPText.Parent = Icon
+								ESPText.BackgroundColor3 = v.TeamColor.Color
+								ESPText.BackgroundTransparency = 1.000
+								ESPText.Size = UDim2.new(0, 800, 0, 50)
+								ESPText.Font = Enum.Font.SciFi
+								ESPText.Text = v[PlayerName].." | Distance: "..pos
+								ESPText.TextColor3 = v.TeamColor.Color
+								ESPText.TextSize = 10.800
+								ESPText.TextWrapped = true
+							else
+								if not v.Character:FindFirstChild("Totally NOT Esp").FillColor == v.TeamColor.Color and not v.Character:FindFirstChild("Icon").TextColor3 == v.TeamColor.Color then
+									v.Character:FindFirstChild("Totally NOT Esp").FillColor = v.TeamColor.Color
+									v.Character:FindFirstChild("Icon").TextColor3 = v.TeamColor.Color
+								else
+									if v.Character:FindFirstChild("Totally NOT Esp").Enabled == false and v.Character:FindFirstChild("Icon").Enabled == false then
+										v.Character:FindFirstChild("Totally NOT Esp").Enabled = true
+										v.Character:FindFirstChild("Icon").Enabled = true
+									else
+										if v.Character:FindFirstChild("Icon") then
+											v.Character:FindFirstChild("Icon")["ESP Text"].Text = v[PlayerName].." | Distance: "..pos
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end)
+
+	wait()
+
+	DB = false
+end
+  	end    
+})
+
+A2Tab:AddSlider({
+	Name = "speed walk",
+	Min = 0,
+	Max = 50,
+	Default = 5,
+	Color = Color3.fromRGB(255,0,0),
+	Increment = 1,
+	ValueName = "speed",
+	Callback = function(Value)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (50)
+	end    
+})
+
+A2Tab:AddButton({
+	Name = "lnfinite yield",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  	end    
+})
+
+A1Tab:AddButton({
+	Name = "AIMBOT PRO!",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/1Gp9c57U"))()
+  	end    
+})
+
+
+
+A1Tab:AddButton({
+	Name = "AIMBOT TOO!",
+	Callback = function()
+      	  loadstring(game:HttpGet(("https://raw.githubusercontent.com/Yousuck780/troll-x/main/ahhhh"), true))()
+  	end    
+})
+
+
+A1Tab:AddLabel("that if you want killed any character local aura")
+A2Tab:AddLabel("that if you want walkspeed run but in glitch in game")
+A2Tab:AddLabel("soon fix that")
+A3Tab:AddLabel("that if you want see ants players you need esp")
+
+
+A1Tab:AddColorpicker({
+	Name = "color gui",
+	Default = Color3.fromRGB(255, 0, 0),
+	Callback = function(Value)
+		print(Value)
+	end	  
+})
